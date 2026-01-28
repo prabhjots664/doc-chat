@@ -1,0 +1,22 @@
+# Vector Database
+qdrant-client>=1.7.0
+
+# Document Processing
+pypdf>=4.0.0
+python-docx>=1.1.0
+python-magic-bin>=0.4.14; platform_system=="Windows"
+python-magic>=0.4.27; platform_system!="Windows"
+
+# Web Interface
+streamlit>=1.46.0
+
+# Configuration & Environment
+pydantic>=2.0.0
+pyyaml>=6.0.0
+python-dotenv>=1.0.0
+
+# HTTP Requests (for OpenRouter & Voyage AI APIs)
+requests>=2.31.0
+
+# Agentic Framework
+microAgents>=0.1.0

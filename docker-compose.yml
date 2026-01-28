@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: doc-chat-qdrant
+    ports:
+      - "6335:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    networks:
+      - doc-chat-network
+
+  # Doc-Chat Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: doc-chat-app
+    ports:
+      - "8501:8501"
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_TIMEOUT=10
+      - APP_ENV=production
+      - VERIFY_SSL=False
+    env_file:
+      - .env
+    volumes:
+      - ./uploads:/app/uploads
+      - ./sample_docs:/app/sample_docs
+      - ./logs:/app/logs
+    networks:
+      - doc-chat-network
+    depends_on:
+      - qdrant
+    restart: unless-stopped
+
+volumes:
+  qdrant_storage:
+    driver: local
+
+networks:
+  doc-chat-network:
+    driver: bridge
