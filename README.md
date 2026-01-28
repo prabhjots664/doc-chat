@@ -5,14 +5,24 @@
 
 ---
 
-### ⚡ Zero-Config Evaluation
-For the convenience of the review team, this repository is **pre-configured** with demo API keys. You can skip manual configuration and launch immediately to test the full agentic search and RAG capabilities.
+## ⚠️ Important: API Key Setup Required
 
-1.  **Launch**:
-    ```bash
-    docker-compose up -d
-    ```
-2.  **Access**: Visit **[http://localhost:8501](http://localhost:8501)**
+**OpenRouter automatically disables API keys pushed to public GitHub repositories for security.**
+
+After cloning this repository, you **must** update the `.env` file with a valid OpenRouter API key:
+
+1. **Get your API key**: Sign up at [OpenRouter](https://openrouter.ai/) (free tier available)
+2. **Update `.env`**: Replace line 2 with your key:
+   ```bash
+   OPENROUTER_API_KEY=your-key-here
+   ```
+3. **Launch**:
+   ```bash
+   docker-compose up -d
+   ```
+4. **Access**: Visit **[http://localhost:8501](http://localhost:8501)**
+
+> 💡 **For Evaluators**: A working API key has been provided separately via email submission.
 
 ---
 
